@@ -5,7 +5,8 @@ from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 from awscrt import mqtt
 
 # AWS IoT Core
-ENDPOINT = 't3fouod00d8aka.deviceadvisor.iot.ap-northeast-1.amazonaws.com'
+#ENDPOINT = 't3fouod00d8aka.deviceadvisor.iot.ap-northeast-1.amazonaws.com'
+ENDPOINT = 'a2fohdr218kpa4-ats.iot.ap-northeast-1.amazonaws.com'
 CLIENT_ID = 'eviot'
 TOPIC = 'topic_1'
 PORT = 443
