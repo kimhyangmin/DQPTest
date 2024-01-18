@@ -1,0 +1,115 @@
+{
+  "interface": "socketcan",
+  "channel": "can0",
+  "backend": {
+    "fd": false
+  },
+  "reconnectPeriod": 5,
+  "devices": [
+    {
+      "name": "Car",
+      "sendDataOnlyOnChange": false,
+      "enableUnknownRpc": true,
+      "strictEval": false,
+      "timeseries": [
+        {
+          "key": "rpm",
+          "nodeId": 1216,
+          "isExtendedId": true,
+          "value": "4:2:big:int",
+          "expression": "value / 4",
+          "polling": {
+            "type": "always",
+            "period": 5,
+            "dataInHex": "aaaa bbbb aaaa bbbb"
+          }
+        }
+      ]
+    }
+  ]
+}
+
+/usr/bin/config-pin p9.19 can
+/usr/bin/config-pin p9.20 can
+sudo ip link set can0 up type can bitrate 500000
+ip link set can0 up txqueuelen 1024
+
+thingsboard-gatewwa/config/tb_gateway.json
+host / port / accessToken
+
+
+
+,
+  "connectors": [
+   {
+      "type": "can",
+      "name": "CAN Connector",
+      "configuration": "can.json"
+    }
+  ]
+  sys.path.append('/home/debian/thingsboard-gateway/')
+from tb_mqtt_client.tb_gateway_mqtt import TBGatewayMqttClient, TBDeviceMqttClient
+
+
+general configuration에서 사이즈가 안맞으면 
+"maxPayloadSizeBytes": 128,
+
+
+grpc version 2.28(ldd --version) --> debian version up --> 비글본 홈페이지에서 최신 이미지 다운 --> 왜 네트워크 연결 안됨?!!?!!?!?!?
+
+
+
+
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+#auto eth0
+#iface eth0 inet dhcp
+# Example to keep MAC address between reboots
+#hwaddress ether DE:AD:BE:EF:CA:FE
+
+##connman: ethX static config
+#connmanctl services
+#Using the appropriate ethernet service, tell connman to setup a static IP address for that service:
+#sudo connmanctl config <service> --ipv4 manual <ip_addr> <netmask> <gateway> --nameservers <dns_server>
+
+##connman: WiFi
+#
+#connmanctl
+#connmanctl> tether wifi off
+#connmanctl> enable wifi
+#connmanctl> scan wifi
+#connmanctl> services
+#connmanctl> agent on
+#connmanctl> connect wifi_*_managed_psk
+#connmanctl> quit
+
+sudo systemctl status systemd-networkd.service
+
+networkctl status usb2
+networkctl list
+/etc/systemd/network
+
+
+
+
+
+debian@beaglebone:/lib/systemd/network$ more /lib/systemd/network/99-default.link
+#  SPDX-License-Identifier: LGPL-2.1+
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Link]
+NamePolicy=keep kernel database onboard slot path
+MACAddressPolicy=persistent
